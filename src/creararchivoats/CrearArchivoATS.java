@@ -1,11 +1,30 @@
 package creararchivoats;
 
 import java.io.*;
+import java.util.Scanner;
 
 
 public class CrearArchivoATS {
     
     File archivo;
+    
+    
+      public static void main(String[] args) {
+        CrearArchivoATS nuevo = new CrearArchivoATS();
+        String texto="";
+        nuevo.crearArchivo();
+        
+         while(!texto.equals("fin")){
+             System.out.println("Ingrese texto (\"fin\" para terminar) : ");
+             Scanner ingresoTexto = new Scanner(System.in);
+             texto = ingresoTexto.next();
+             nuevo.agregarTexto(texto);
+        }
+        
+        nuevo.leerTexto();
+        
+        
+    }
     
     private void crearArchivo(){
         archivo = new File("prueba.txt");
@@ -22,14 +41,12 @@ public class CrearArchivoATS {
         
     }
 
-    private void agregarTexto(){
+    private void agregarTexto(String texto){
         try {
             FileWriter escribir = new FileWriter(archivo, true); //el boolean true indica que vamos a añadir y no sobreescribir 
             //escribir.write("Hola mundo"); //sobrescribe al ejecutar el programa de nuevo
             //escribir.write("\nSobrescribe?");
-            escribir.append("un texto");
-            escribir.append("\n otro texto");
-            escribir.append("\npalabras"); //añade sin sobreescribir
+            escribir.append(texto);
             escribir.close();
         } catch (IOException ex) {
             System.err.println("Error, no se puede escribir en el archivo.");
@@ -60,11 +77,6 @@ public class CrearArchivoATS {
             System.err.println("Error " + ex );
         }
     }
-    public static void main(String[] args) {
-        CrearArchivoATS nuevo = new CrearArchivoATS();
-        nuevo.crearArchivo();
-       // nuevo.agregarTexto();
-        nuevo.leerTexto();
-    }
+ 
     
 }
