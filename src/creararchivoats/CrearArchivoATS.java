@@ -18,7 +18,7 @@ public class CrearArchivoATS {
              System.out.println("Ingrese texto (\"fin\" para terminar) : ");
              Scanner ingresoTexto = new Scanner(System.in);
              texto = ingresoTexto.next();
-             nuevo.agregarTexto(texto);
+             nuevo.agregarTexto(texto + "\n");
         }
         
         nuevo.leerTexto();
@@ -44,8 +44,6 @@ public class CrearArchivoATS {
     private void agregarTexto(String texto){
         try {
             FileWriter escribir = new FileWriter(archivo, true); //el boolean true indica que vamos a añadir y no sobreescribir 
-            //escribir.write("Hola mundo"); //sobrescribe al ejecutar el programa de nuevo
-            //escribir.write("\nSobrescribe?");
             escribir.append(texto);
             escribir.close();
         } catch (IOException ex) {
@@ -62,9 +60,8 @@ public class CrearArchivoATS {
             
             try {
                 cadena = lectura.readLine();
-                //System.out.println(cadena);
                 while(cadena != null){
-                System.out.println(cadena);
+                System.out.println(cadena + "\n");
                 cadena = lectura.readLine();
                 }
             } catch (IOException ex) {
